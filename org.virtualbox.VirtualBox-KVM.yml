@@ -34,6 +34,7 @@ modules:
     buildsystem: simple
     build-commands:
       - ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java
+      - source ./env.sh
       - kmk
     sources: 
       - type: archive
