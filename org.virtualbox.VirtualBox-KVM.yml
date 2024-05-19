@@ -1,0 +1,48 @@
+app-id: org.virtualbox.VirtualBox-KVM
+runtime: org.freedesktop.Platform
+runtime-version: 23.08
+sdk: org.freedesktop.Sdk
+command: true
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --share=network
+  - --device=all
+  - --system-talk-name=org.freedesktop.timedate1
+  - --talk-name=org.gnome.ControlCenter
+  - --talk-name=org.gnome.Settings
+  - --filesystem=xdg-run/dconf
+  - --filesystem=~/.config/dconf:ro
+  - --filesystem=host
+  - --talk-name=ca.desrt.dconf
+  - --env=DCONF_USER_CONFIG_DIR=.config/dconf
+cleanup:
+  - /usr
+  - '''*.a'''
+  - '''*.la'''
+  - /include
+  - /lib/pkgconfig
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  
+modules:
+  - name: virtualbox
+    buildsystem: autotools
+    config-opts:
+      - --with-kvm
+      - --disable-kmods
+      - --disable-docs
+      - --disable-hardening
+      - --disable-java
+    sources: 
+      - type: archive
+        url: https://download.virtualbox.org/virtualbox/7.0.18/VirtualBox-7.0.18.tar.bz2
+        sha256: d999513533631674a024762668de999411d8197060c51e68c5faf0a2c0eea1a5
+      - type: patch
+        path: kvm-backend-7.0.18-dev-20240515.patch
+        use-git: true
+
