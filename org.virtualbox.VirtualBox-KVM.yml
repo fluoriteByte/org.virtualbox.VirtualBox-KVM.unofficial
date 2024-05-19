@@ -34,8 +34,8 @@ modules:
   - name: acpica
     buildsystem: simple
     build-commands:
-      - make -C acpica-unix-20240321
-      - make DESTDIR="/app" install -C acpica-unix-20240321
+      - make -j4
+      - make DESTDIR="/app" install
     sources: 
       - type: archive
         url: https://downloadmirror.intel.com/819452/acpica-unix2-20240321.tar.gz
