@@ -44,6 +44,7 @@ modules:
   - name: virtualbox
     buildsystem: simple
     build-commands:
+      - export IASL=/app/bin/iasl
       - ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java
       - source ./env.sh
       - kmk
