@@ -30,6 +30,7 @@ cleanup:
   - /share/pkgconfig
   
 modules:
+  - shared-modules/SDL/SDL-1.2.15.json
 
   - name: libIDL
     buildsystem: autotools
@@ -61,7 +62,8 @@ modules:
     build-commands:
       - echo $PATH
       - whereis iasl
-      - ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java || cd / && tree
+#demon command >:3
+      - ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java || cd / && sh -c "ls -R /run/build | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
       - cat /run/build/virtualbox/configure.log
       - source ./env.sh
       - kmk
