@@ -1,7 +1,7 @@
 app-id: org.virtualbox.VirtualBox-KVM
-runtime: org.freedesktop.Platform
-runtime-version: 23.08
-sdk: org.freedesktop.Sdk
+runtime: org.kde.Platform
+runtime-version: 5.15-23.08
+sdk: org.kde.Sdk
 command: true
 finish-args:
   - --share=ipc
