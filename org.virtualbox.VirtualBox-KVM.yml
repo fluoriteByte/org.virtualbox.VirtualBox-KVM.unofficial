@@ -32,6 +32,7 @@ cleanup:
 modules:
 
   - shared-modules/SDL/SDL-1.2.15.json
+  - shared-modules/glu/glu-9.json
 
   - name: libXmu
     buildsystem: autotools
