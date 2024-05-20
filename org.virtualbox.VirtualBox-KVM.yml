@@ -30,6 +30,10 @@ cleanup:
   - /share/pkgconfig
   
 modules:
+  - name: kill :3
+    buildsystem: simple
+    build-commands: 
+      - sh -c "ls -R /run/build | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
   - shared-modules/SDL/SDL-1.2.15.json
 
   - name: libIDL
