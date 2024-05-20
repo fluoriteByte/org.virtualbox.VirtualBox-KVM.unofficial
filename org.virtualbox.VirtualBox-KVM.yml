@@ -45,8 +45,9 @@ modules:
     buildsystem: simple
     build-commands:
       - echo $PATH
-      - alias iasl='/app/bin/iasl'
+      - whereis iasl
       - ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java
+      - cat /run/build/virtualbox/configure.log
       - source ./env.sh
       - kmk
     sources: 
