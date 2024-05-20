@@ -1,0 +1,19 @@
+commit e2560028b8c72fc71ffaa1110e2b69637b6991f1
+Author: Illy Boom 7 <Teh404Gal@proton.me>
+Date:   Mon May 20 22:57:39 2024 +0000
+
+    nrjnvrtjnkntjntjvn
+
+diff --git a/configure b/configure
+index 275f05ca..b4af4296 100755
+--- a/configure
++++ b/configure
+@@ -150,7 +150,7 @@ LIBLZF="-llzf"
+ INCVNCSERVER=""
+ LIBVNCSERVER="-lvncserver"
+ INCDEVMAPPER=""
+-LIBDEVMAPPER="-ldevmapper"
++LIBDEVMAPPER="-L/app/lib"
+ CXX_FLAGS=""
+ if [ "$OS" = "freebsd" ]; then
+   INCCURL="-I/usr/local/include"
