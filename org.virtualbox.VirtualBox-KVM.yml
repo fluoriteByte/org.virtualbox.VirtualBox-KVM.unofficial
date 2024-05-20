@@ -45,6 +45,7 @@ modules:
     buildsystem: simple
     build-commands:
       - echo $PATH
+      - alias iasl='/app/bin/iasl'
       - ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java
       - source ./env.sh
       - kmk
