@@ -82,4 +82,8 @@ modules:
       - type: patch
         path: kvm-backend-7.0.18-dev-20240515.patch
         use-git: true
+      - type: patch
+        path: some-patch0001.patch
+        use-git: true
+        
 

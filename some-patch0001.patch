@@ -1,0 +1,19 @@
+commit f6da3ded300e0724bd0077bbd98cfe040e8c026e
+Author: Illy Boom 7 <Teh404Gal@proton.me>
+Date:   Mon May 20 21:50:37 2024 +0000
+
+    Maybe?
+
+diff --git a/configure b/configure
+index 22709bf9..275f05ca 100755
+--- a/configure
++++ b/configure
+@@ -136,7 +136,7 @@ LIBCAP="-lcap"
+ GSOAP=""
+ GSOAP_IMPORT=""
+ INCX11="/usr/local/include"
+-LIBX11="-L/usr/X11R6/lib -L/usr/X11R6/lib64 -L/usr/local/lib -lXext -lX11"
++LIBX11="-L/usr/X11R6/lib -L/usr/X11R6/lib64 -L/app/lib -L/usr/local/lib -lXext -lX11"
+ LIBXCURSOR="-lXcursor"
+ LIBXMU="-lXmu"
+ LIBXINERAMA="-lXinerama"
