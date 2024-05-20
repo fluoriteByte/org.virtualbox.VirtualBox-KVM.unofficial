@@ -35,8 +35,8 @@ modules:
     buildsystem: simple
     build-commands:
       - make -j4
-      - cd generate/unix/bin
-      - make -p /app/bin; install -m 555 -s /run/build/acpica/generate/unix/bin/iasl /app/bin/iasl
+      - make DESTDIR="/app" install
+      - mkdir -p /app/bin; ln -s /app/usr/bin/iasl /app/bin/iasl 
     sources: 
       - type: archive
         url: https://downloadmirror.intel.com/819452/acpica-unix2-20240321.tar.gz
