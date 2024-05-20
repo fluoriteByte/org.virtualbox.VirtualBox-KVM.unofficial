@@ -33,6 +33,13 @@ modules:
 
   - shared-modules/SDL/SDL-1.2.15.json
 
+  - name: libXmu
+    buildsystem: autotools
+    sources: 
+      - type: archive
+        url: https://xorg.freedesktop.org/archive/individual/lib/libXmu-1.2.1.tar.gz
+        sha256: bf0902583dd1123856c11e0a5085bd3c6e9886fbbd44954464975fd7d52eb599
+
   - name: libIDL
     buildsystem: autotools
     sources: 
