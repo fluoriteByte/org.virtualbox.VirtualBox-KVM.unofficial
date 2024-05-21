@@ -34,23 +34,6 @@ modules:
   - shared-modules/SDL/SDL-1.2.15.json
   - shared-modules/glu/glu-9.json
   
-  - name: libaio
-    buildsystem: simple
-    build-commands: 
-      - make -j4
-      - make prefix=/app install
-    sources:
-      - type: archive
-        url: https://pagure.io/libaio/archive/libaio-0.3.113/libaio-libaio-0.3.113.tar.gz
-        sha256: 716c7059703247344eb066b54ecbc3ca2134f0103307192e6c2b7dab5f9528ab
-
-  - name: lvm2+devmapper
-    buildsystem: autotools
-    sources: 
-      - type: archive
-        url: https://mirrors.kernel.org/sourceware/lvm2/LVM2.2.03.24.tgz
-        sha256: 593c5503ba00faab1c6e0b4a597b9605ec7b5881845c04bf412ebf9d1bbfa13c
-
   - name: libXmu
     buildsystem: autotools
     sources: 
@@ -89,7 +72,7 @@ modules:
       - echo $PATH
       - whereis iasl
 #demon command >:3
-      - LDFLAGS="-L/app/bin" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java
+      - LDFLAGS="-L/app/bin" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper
       - cat /run/build/virtualbox/configure.log
       - source ./env.sh
       - kmk
