@@ -2,9 +2,9 @@ app-id: org.virtualbox.VirtualBox-KVM
 runtime: org.kde.Platform
 runtime-version: 5.15-23.08
 sdk: org.kde.Sdk
-sdk-extensions:
-  - org.freedesktop.Sdk.Compat.i386
-  - org.freedesktop.Sdk.Extension.toolchain-i386
+#sdk-extensions:
+#  - org.freedesktop.Sdk.Compat.i386
+#  - org.freedesktop.Sdk.Extension.toolchain-i386
 command: true
 finish-args:
   - --share=ipc
@@ -31,7 +31,7 @@ cleanup:
   - /share/gtk-doc
   - /share/man
   - /share/pkgconfig
-  
+
 modules:
 
   - shared-modules/SDL/SDL-1.2.15.json
@@ -39,36 +39,36 @@ modules:
 
   - name: libXmu
     buildsystem: autotools
-    sources: 
+    sources:
       - type: archive
         url: https://xorg.freedesktop.org/archive/individual/lib/libXmu-1.2.1.tar.gz
         sha256: bf0902583dd1123856c11e0a5085bd3c6e9886fbbd44954464975fd7d52eb599
 
   - name: libIDL
     buildsystem: autotools
-    sources: 
+    sources:
       - type: archive
         url: https://download.gnome.org/sources/libIDL/0.8/libIDL-0.8.14.tar.bz2
         sha256: c5d24d8c096546353fbc7cedf208392d5a02afe9d56ebcc1cccb258d7c4d2220
 
   - name: yasm
     buildsystem: cmake
-    sources: 
+    sources:
       - type: archive
         url: https://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
         sha256: 3dce6601b495f5b3d45b59f7d2492a340ee7e84b5beca17e48f862502bd5603f
-        
+
   - name: acpica
     buildsystem: simple
     build-commands:
       - make -j4 iasl
       - make DESTDIR="/app" install
-      - mkdir -p /app/bin; ln -s /app/usr/bin/iasl /app/bin/iasl 
-    sources: 
+      - mkdir -p /app/bin; ln -s /app/usr/bin/iasl /app/bin/iasl
+    sources:
       - type: archive
         url: https://downloadmirror.intel.com/819452/acpica-unix2-20240321.tar.gz
         sha256: e61447955e25f33a219edc3249d012206f1b79b327174512076545fda2261d21
-        
+
   - name: virtualbox
     buildsystem: simple
     prepend-path: /usr/lib/sdk/toolchain-i386/bin
@@ -76,22 +76,22 @@ modules:
       - echo $PATH
       - whereis iasl
 # TODO: Find a less unglier way to do this
-      - LDFLAGS="-L/app/lib -L/app/lib32" CC32=i686-unknown-linux-gnu-gcc CXX32=i686-unknown-linux-gnu-g++ ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --with-makeself=/usr/bin/echo
+      - LDFLAGS="-L/app/lib" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --with-makeself=/usr/bin/echo
       - cat /run/build/virtualbox/configure.log
+      - cat env.sh
       - source ./env.sh
+      - cat kmk
       - kmk
-    sources: 
+    sources:
       - type: archive
         url: https://download.virtualbox.org/virtualbox/7.0.18/VirtualBox-7.0.18.tar.bz2
         sha256: d999513533631674a024762668de999411d8197060c51e68c5faf0a2c0eea1a5
       - type: patch
         path: kvm-backend-7.0.18-dev-20240515.patch
-        use-git: true
+        use-git: false
       - type: patch
         path: some-patch0001.patch
-        use-git: true
+        use-git: false
       - type: patch
         path: some-patch0002.patch
-        use-git: true
-        
-
+        use-git: false
