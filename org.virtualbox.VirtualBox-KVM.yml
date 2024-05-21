@@ -34,12 +34,8 @@ modules:
   - shared-modules/SDL/SDL-1.2.15.json
   - shared-modules/glu/glu-9.json
 
-  - name: device-mapper
-    buildsystem: simple
-    build-commands:
-      - ./configure --prefix=/app --sbindir=/app/bin --enable-pkgconfig
-      - make -j4 device-mapper
-      - make install_device-mapper
+  - name: lvm2+devmapper
+    buildsystem: autotools
     sources: 
       - type: archive
         url: https://mirrors.kernel.org/sourceware/lvm2/LVM2.2.03.24.tgz
