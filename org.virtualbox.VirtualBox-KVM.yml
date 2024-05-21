@@ -36,7 +36,12 @@ modules:
 
   - shared-modules/SDL/SDL-1.2.15.json
   - shared-modules/glu/glu-9.json
-  
+
+  - name: whereis
+    buildsystem: simple
+    build-commands:
+      - whereis $CC
+
   - name: libXmu
     buildsystem: autotools
     sources: 
