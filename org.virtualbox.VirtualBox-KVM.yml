@@ -75,7 +75,8 @@ modules:
     build-commands:
       - echo $PATH
       - whereis iasl
-#demon command >:3
+# TODO: Find a less unglier way to do this
+      - gcc() { if [[ $@ == "-m32" ]]; then command i686-unknown-linux-gnu-gcc; else command gcc "$@"; fi; }
       - LDFLAGS="-L/app/lib -L/app/lib32" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper
       - cat /run/build/virtualbox/configure.log
       - source ./env.sh
