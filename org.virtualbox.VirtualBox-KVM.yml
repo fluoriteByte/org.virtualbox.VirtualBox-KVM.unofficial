@@ -75,7 +75,7 @@ modules:
       - echo $PATH
       - whereis iasl
 #demon command >:3
-      - LDFLAGS="-L/app/bin" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper
+      - LDFLAGS="-L/app/lib -L/app/lib32" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper
       - cat /run/build/virtualbox/configure.log
       - source ./env.sh
       - kmk
