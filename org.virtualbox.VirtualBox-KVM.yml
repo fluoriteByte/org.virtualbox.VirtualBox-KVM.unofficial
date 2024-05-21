@@ -71,6 +71,7 @@ modules:
         
   - name: virtualbox
     buildsystem: simple
+    prepend-path: /usr/lib/sdk/toolchain-i386/bin
     build-commands:
       - echo $PATH
       - whereis iasl
