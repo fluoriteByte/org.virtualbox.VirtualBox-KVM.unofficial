@@ -36,25 +36,11 @@ add-extensions:
     version: '23.08'
     
 modules:
-  - modules:
+
+- modules:
   - shared-modules/SDL/SDL-1.2.15.json
   - shared-modules/glu/glu-9.json
   
-  
-  - name: bundle-setup
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/lib/i386-linux-gnu
-      - mkdir -p /app/lib/debug/lib/i386-linux-gnu
-      - mkdir -p /app/lib/i386-linux-gnu/GL
-      - install -Dm644 ld.so.conf /app/etc/ld.so.conf
-    sources:
-      - type: inline
-        dest-filename: ld.so.conf
-        contents: |
-          /app/lib32
-          /app/lib/i386-linux-gnu
-
   - name: libXmu
     buildsystem: autotools
     sources: 
