@@ -76,7 +76,7 @@ modules:
       - echo $PATH
       - whereis iasl
 # TODO: Find a less unglier way to do this
-      - LDFLAGS="-L/app/lib -L/app/lib32" CC32=i686-unknown-linux-gnu-gcc CXX32=i686-unknown-linux-gnu-g++ ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw
+      - LDFLAGS="-L/app/lib -L/app/lib32" CC32=i686-unknown-linux-gnu-gcc CXX32=i686-unknown-linux-gnu-g++ ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --with-makeself=/usr/bin/echo
       - cat /run/build/virtualbox/configure.log
       - source ./env.sh
       - kmk
