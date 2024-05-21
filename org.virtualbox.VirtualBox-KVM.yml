@@ -37,7 +37,7 @@ modules:
   - name: device-mapper
     buildsystem: simple
     build-commands:
-      - ./configure --prefix=/app --sbindir=/app/bin
+      - ./configure --prefix=/app --sbindir=/app/bin --enable-pkgconfig
       - make -j4 device-mapper
       - make install_device-mapper
     sources: 
@@ -97,8 +97,8 @@ modules:
       - type: patch
         path: some-patch0001.patch
         use-git: true
-      - type: patch
-        path: some-patch0002.patch
-        use-git: true
+#      - type: patch
+#        path: some-patch0002.patch
+#        use-git: true
         
 
