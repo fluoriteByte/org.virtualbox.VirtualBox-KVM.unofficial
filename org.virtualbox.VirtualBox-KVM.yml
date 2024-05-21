@@ -33,6 +33,16 @@ modules:
 
   - shared-modules/SDL/SDL-1.2.15.json
   - shared-modules/glu/glu-9.json
+  
+  - name: libaio
+    buildsystem: simple
+    build-commands: 
+      - make -j4
+      - make prefix=/app install
+    sources:
+      - type: archive
+        url: https://pagure.io/libaio/archive/libaio-0.3.113/libaio-libaio-0.3.113.tar.gz
+        sha256: 716c7059703247344eb066b54ecbc3ca2134f0103307192e6c2b7dab5f9528ab
 
   - name: lvm2+devmapper
     buildsystem: autotools
