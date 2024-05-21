@@ -37,11 +37,6 @@ modules:
   - shared-modules/SDL/SDL-1.2.15.json
   - shared-modules/glu/glu-9.json
 
-  - name: whereis
-    buildsystem: simple
-    build-commands:
-      - whereis $CC
-
   - name: libXmu
     buildsystem: autotools
     sources: 
@@ -81,8 +76,7 @@ modules:
       - echo $PATH
       - whereis iasl
 # TODO: Find a less unglier way to do this
-      - gcc() { if [[ $@ == "-m32" ]]; then command i686-unknown-linux-gnu-gcc; else command gcc "$@"; fi; }
-      - LDFLAGS="-L/app/lib -L/app/lib32" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper
+      - LDFLAGS="-L/app/lib -L/app/lib32" CC32=i686-unknown-linux-gnu-gcc CXX32=i686-unknown-linux-gnu-g++ ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper
       - cat /run/build/virtualbox/configure.log
       - source ./env.sh
       - kmk
@@ -96,8 +90,8 @@ modules:
       - type: patch
         path: some-patch0001.patch
         use-git: true
-#      - type: patch
-#        path: some-patch0002.patch
-#        use-git: true
+      - type: patch
+        path: some-patch0002.patch
+        use-git: true
         
 

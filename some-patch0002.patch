@@ -1,19 +1,52 @@
-commit e2560028b8c72fc71ffaa1110e2b69637b6991f1
+commit b6fb12d3ff17d0460ccfb4ca7bb6a1c33963d693
 Author: Illy Boom 7 <Teh404Gal@proton.me>
-Date:   Mon May 20 22:57:39 2024 +0000
+Date:   Tue May 21 12:02:27 2024 +0000
 
-    nrjnvrtjnkntjntjvn
+    lovely job, intern at oracle
 
 diff --git a/configure b/configure
-index 275f05ca..b4af4296 100755
+index 275f05ca..ff692854 100755
 --- a/configure
 +++ b/configure
-@@ -150,7 +150,7 @@ LIBLZF="-llzf"
- INCVNCSERVER=""
- LIBVNCSERVER="-lvncserver"
- INCDEVMAPPER=""
--LIBDEVMAPPER="-ldevmapper"
-+LIBDEVMAPPER="-L/app/lib"
- CXX_FLAGS=""
- if [ "$OS" = "freebsd" ]; then
-   INCCURL="-I/usr/local/include"
+@@ -2119,8 +2119,8 @@ EOF
+   echo "compiling the following source file:" >> $LOG
+   cat $ODIR.tmp_src.c >> $LOG
+   echo "using the following command line:" >> $LOG
+-  echo "$CC -m32 -O -Wall -o $ODIR.tmp_out $ODIR.tmp_src.c" >> $LOG
+-  $CC -m32 -O -Wall -o $ODIR.tmp_out $ODIR.tmp_src.c >> $LOG 2>&1
++  echo "$CC32 -O -Wall -o $ODIR.tmp_out $ODIR.tmp_src.c" >> $LOG
++  $CC32 -O -Wall -o $ODIR.tmp_out $ODIR.tmp_src.c >> $LOG 2>&1
+   if [ $? -ne 0 ]; then
+     echo
+     echo "  Cannot compile 32-bit applications (missing headers and/or libraries)!"
+diff --git a/src/libs/openssl-3.1.5/util/perl/OpenSSL/config.pm b/src/libs/openssl-3.1.5/util/perl/OpenSSL/config.pm
+index 5da9282d..e26e3225 100755
+--- a/src/libs/openssl-3.1.5/util/perl/OpenSSL/config.pm
++++ b/src/libs/openssl-3.1.5/util/perl/OpenSSL/config.pm
+@@ -252,7 +252,7 @@ sub get_sco_type {
+ sub guess_system {
+     ($SYSTEM, undef, $RELEASE, $VERSION, $MACHINE) = POSIX::uname();
+     my $sys = "${SYSTEM}:${RELEASE}:${VERSION}:${MACHINE}";
+-    
++
+     # Special-cases for ISC, SCO, Unixware
+     my $REL = is_sco_uname();
+     if ( defined $REL ) {
+@@ -388,7 +388,7 @@ sub determine_compiler_settings {
+         if ( $SYSTEM eq "SunOS" ) {
+             # check for Oracle Developer Studio, expected output is "cc: blah-blah C x.x blah-blah"
+             my $v = `(cc -V 2>&1) 2>/dev/null | egrep -e '^cc: .* C [0-9]\.[0-9]'`;
+-            my @numbers = 
++            my @numbers =
+                     ( $v =~ m/^.* C ([0-9]+)\.([0-9]+) .*/ );
+             my @factors = (100, 1);
+             $v = 0;
+@@ -715,7 +715,7 @@ EOF
+             # On machines where the compiler understands -m32, prefer a
+             # config target that uses it
+             return { target => "linux-x86" }
+-                if okrun("$CC -m32 -E -x c /dev/null >/dev/null 2>&1");
++                if okrun("$CC32 -E -x c /dev/null >/dev/null 2>&1");
+             return { target => "linux-elf" };
+         }
+       ],
