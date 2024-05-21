@@ -37,9 +37,6 @@ add-extensions:
     
 modules:
   - modules:
-  - shared-modules/SDL/SDL-1.2.15.json
-  - shared-modules/glu/glu-9.json
-  
   
   - name: bundle-setup
     buildsystem: simple
@@ -55,6 +52,9 @@ modules:
           /app/lib32
           /app/lib/i386-linux-gnu
 
+  - shared-modules/SDL/SDL-1.2.15.json
+  - shared-modules/glu/glu-9.json
+  
   - name: libXmu
     buildsystem: autotools
     sources: 
