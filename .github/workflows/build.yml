@@ -21,3 +21,7 @@ jobs:
         cache: true
         restore-cache: true
         cache-key: flatpak-builder-${{ github.sha }}
+    - uses: actions/upload-artifact@v1
+      with:
+        name: test-results
+        path: /run/build/virtualbox/configure.log
