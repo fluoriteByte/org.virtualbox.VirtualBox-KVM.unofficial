@@ -37,12 +37,46 @@ modules:
   - shared-modules/SDL/SDL-1.2.15.json
   - shared-modules/glu/glu-9.json
 
+  - name: pam
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://github.com/linux-pam/linux-pam/releases/download/v1.6.1/Linux-PAM-1.6.1.tar.xz
+        sha256: f8923c740159052d719dbfc2a2f81942d68dd34fcaf61c706a02c9b80feeef8e
+
+  - name: security-includes-pam
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/include/security
+      - install -m 644 libpam/include/security/_pam_compat.h /app/include/security/_pam_compat.h
+      - install -m 644 libpam/include/security/_pam_macros.h /app/include/security/_pam_macros.h
+      - install -m 644 libpam/include/security/_pam_types.h /app/include/security/_pam_types.h
+      - install -m 644 libpam/include/security/pam_appl.h /app/include/security/pam_appl.h
+      - install -m 644 libpam/include/security/pam_ext.h /app/include/security/pam_ext.h
+      - install -m 644 libpam/include/security/pam_modules.h /app/include/security/pam_modules.h
+      - install -m 644 libpam/include/security/pam_modutil.h /app/include/security/pam_modutil.h
+    sources:
+      - type: archive
+        url: https://github.com/linux-pam/linux-pam/releases/download/v1.6.1/Linux-PAM-1.6.1.tar.xz
+        sha256: f8923c740159052d719dbfc2a2f81942d68dd34fcaf61c706a02c9b80feeef8e
+
   - name: libXmu
     buildsystem: autotools
     sources:
       - type: archive
         url: https://xorg.freedesktop.org/archive/individual/lib/libXmu-1.2.1.tar.gz
         sha256: bf0902583dd1123856c11e0a5085bd3c6e9886fbbd44954464975fd7d52eb599
+
+  - name: libXmu
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/include/X11/Xmu
+      - for f in include/X11/Xmu/*; do install -m 644 $f /app/$f; done
+    sources:
+      - type: archive
+        url: https://xorg.freedesktop.org/archive/individual/lib/libXmu-1.2.1.tar.gz
+        sha256: bf0902583dd1123856c11e0a5085bd3c6e9886fbbd44954464975fd7d52eb599
+#for f in /source/path/*.py; do install -D -t /dest/path $f; done
 
   - name: libIDL
     buildsystem: autotools
@@ -73,15 +107,13 @@ modules:
     buildsystem: simple
     prepend-path: /usr/lib/sdk/toolchain-i386/bin
     build-commands:
-      - echo $PATH
-      - whereis iasl
 # TODO: Find a less unglier way to do this
-      - LDFLAGS="-L/app/lib" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --with-makeself=/usr/bin/echo
+      - ls -a /app/include/* && ls -a /app/lib/* && echo $PKG_CONFIG_PATH && exit 127
+      - PKG_CONFIG_PATH=/app/lib/pkgconfig LDFLAGS="-L/app/lib" LIBXMU="-L/app/lib" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --with-makeself=/usr/bin/echo
       - cat /run/build/virtualbox/configure.log
       - cat env.sh
       - source ./env.sh
-      - cat kmk
-      - kmk
+      - PKG_CONFIG_PATH=/app/lib/pkgconfig VBOX_ONLY_ADDITIONS=1 ./kBuild/bin/linux.amd64/kmk
     sources:
       - type: archive
         url: https://download.virtualbox.org/virtualbox/7.0.18/VirtualBox-7.0.18.tar.bz2
@@ -92,6 +124,6 @@ modules:
       - type: patch
         path: some-patch0001.patch
         use-git: false
-      - type: patch
-        path: some-patch0002.patch
-        use-git: false
+#      - type: patch
+#        path: some-patch0003.patch
+#        use-git: false
