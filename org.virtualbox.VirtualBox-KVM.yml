@@ -92,34 +92,34 @@ modules:
   - name: acpica
     buildsystem: simple
     build-commands:
-      - make -j4 iasl
+      - make NOFORTIFY=TRUE -j4 iasl
       - make DESTDIR="/app" install
       - mkdir -p /app/bin; ln -s /app/usr/bin/iasl /app/bin/iasl
     sources:
       - type: archive
-        url: https://downloadmirror.intel.com/819452/acpica-unix2-20240321.tar.gz
-        sha256: e61447955e25f33a219edc3249d012206f1b79b327174512076545fda2261d21
+        url: https://github.com/acpica/acpica/releases/download/R2024_12_12/acpica-unix-20241212.tar.gz
+        sha256: 9dca83cfee390b710485fbdf787048370049c05723b10cc220cfef6e13c31961
 
   - name: virtualbox
     buildsystem: simple
     build-commands:
 # TODO: Find a less unglier way to do this
-      - ls -a /app/include/* && ls -a /app/lib/* && echo $PKG_CONFIG_PATH && exit 127
-      - PKG_CONFIG_PATH=/app/lib/pkgconfig LDFLAGS="-L/app/lib" LIBXMU="-L/app/lib" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --with-makeself=/usr/bin/echo
+#      - ls -a /app/include/* && ls -a /app/lib/* && echo $PKG_CONFIG_PATH && exit 127
+      - PKG_CONFIG_PATH=/app/lib/pkgconfig LDFLAGS="-L/app/lib" LIBXMU="-L/app/lib" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --disable-extpack --with-makeself=/usr/bin/echo
       - cat /run/build/virtualbox/configure.log
       - cat env.sh
       - source ./env.sh
       - PKG_CONFIG_PATH=/app/lib/pkgconfig VBOX_ONLY_ADDITIONS=1 ./kBuild/bin/linux.amd64/kmk
     sources:
       - type: archive
-        url: https://download.virtualbox.org/virtualbox/7.0.18/VirtualBox-7.0.18.tar.bz2
-        sha256: d999513533631674a024762668de999411d8197060c51e68c5faf0a2c0eea1a5
+        url: https://web.archive.org/web/20241212041009if_/https://download.virtualbox.org/virtualbox/7.1.4/VirtualBox-7.1.4.tar.bz2
+        sha256: 872e7a42b41f8558abbf887f1bdc7aac932bb88b2764d07cbce270cab57e3b5e
       - type: patch
-        path: kvm-backend-7.0.18-dev-20240515.patch
+        path: kvm-backend-7.1.4-dev-20241220.patch
         use-git: false
-      - type: patch
-        path: some-patch0001.patch
-        use-git: false
+#      - type: patch
+#        path: fixlibx11thing.patch
+#        use-git: false
 #      - type: patch
 #        path: some-patch0003.patch
 #        use-git: false
