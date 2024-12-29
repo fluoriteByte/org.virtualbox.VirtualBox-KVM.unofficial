@@ -1,5 +1,5 @@
 .flatpak-builder
 log.txt
-build
-.vscode
+build/
+.vscode/
 
