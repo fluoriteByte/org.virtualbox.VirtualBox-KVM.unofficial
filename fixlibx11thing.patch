@@ -13,7 +13,7 @@ index 22709bf9..275f05ca 100755
  GSOAP_IMPORT=""
  INCX11="/usr/local/include"
 -LIBX11="-L/usr/X11R6/lib -L/usr/X11R6/lib64 -L/usr/local/lib -lXext -lX11"
-+LIBX11="-L/usr/X11R6/lib -L/usr/X11R6/lib64 -L/app/lib -L/usr/local/lib -lXext -lX11"
++LIBX11="-L/app/lib -lXext -lX11"
  LIBXCURSOR="-lXcursor"
  LIBXMU="-lXmu"
  LIBXINERAMA="-lXinerama"

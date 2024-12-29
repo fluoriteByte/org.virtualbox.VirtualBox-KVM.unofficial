@@ -65,10 +65,7 @@ modules:
         sha256: bf0902583dd1123856c11e0a5085bd3c6e9886fbbd44954464975fd7d52eb599
 
   - name: libXmu
-    buildsystem: simple
-    build-commands:
-      - mkdir -p /app/include/X11/Xmu
-      - for f in include/X11/Xmu/*; do install -m 644 $f /app/$f; done
+    buildsystem: autotools
     sources:
       - type: archive
         url: https://xorg.freedesktop.org/archive/individual/lib/libXmu-1.2.1.tar.gz
@@ -104,7 +101,6 @@ modules:
     buildsystem: simple
     build-commands:
 # TODO: Find a less unglier way to do this
-#      - ls -a /app/include/* && ls -a /app/lib/* && echo $PKG_CONFIG_PATH && exit 127
       - PKG_CONFIG_PATH=/app/lib/pkgconfig LDFLAGS="-L/app/lib" LIBXMU="-L/app/lib" ./configure --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --disable-extpack --with-makeself=/usr/bin/echo
       - cat /run/build/virtualbox/configure.log
       - cat env.sh
@@ -117,9 +113,9 @@ modules:
       - type: patch
         path: kvm-backend-7.1.4-dev-20241220.patch
         use-git: false
-#      - type: patch
-#        path: fixlibx11thing.patch
-#        use-git: false
-#      - type: patch
-#        path: some-patch0003.patch
-#        use-git: false
+      - type: patch
+        path: fixlibx11thing.patch
+        use-git: false
+      - type: file
+        path: LocalConfig.kmk
+
