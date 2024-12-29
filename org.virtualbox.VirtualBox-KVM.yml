@@ -10,6 +10,8 @@ finish-args:
   - --share=network
   - --device=all
   - --filesystem=host
+  - --filesystem=xdg-documents
+  - --filesystem=~/"VirtualBox VMs"/
 cleanup:
   - /usr
   - '''*.a'''
@@ -20,6 +22,8 @@ cleanup:
   - /share/gtk-doc
   - /share/man
   - /share/pkgconfig
+  - /etc
+
 
 modules:
 
@@ -74,8 +78,8 @@ modules:
       - cat env.sh
       - source ./env.sh
       - PKG_CONFIG_PATH=/app/lib/pkgconfig ./kBuild/bin/linux.amd64/kmk
-      - mkdir /app/VirtualBox/
-      - cp -r out/linux.amd64/release/bin/ /app/VirtualBox/
+      - cp -r out/linux.amd64/release/bin/ /app/VirtualBox
+      - ln -s /app/VirtualBox/VirtualBox /app/bin/VirtualBox
     sources:
       - type: archive
         url: https://web.archive.org/web/20241212041009if_/https://download.virtualbox.org/virtualbox/7.1.4/VirtualBox-7.1.4.tar.bz2
@@ -88,10 +92,10 @@ modules:
         use-git: false
       - type: file
         path: LocalConfig.kmk
-
-  - name: xcb-util-cursor
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://xcb.freedesktop.org/dist/xcb-util-cursor-0.1.5.tar.xz
-        sha256: 0caf99b0d60970f81ce41c7ba694e5eaaf833227bb2cbcdb2f6dc9666a663c57
+  - name: cleanupstuff
+    buildsystem: simple
+    build-commands:
+      - rm -rf /app/VirtualBox/{src,sdk,scripts,dtrace}
+      - install -D -m0644 /app/VirtualBox/virtualbox.desktop /app/share/applications/org.virtualbox.VirtualBox-KVM.virtualbox.desktop
+      - install -D -m0644 /app/VirtualBox/virtualboxvm.desktop /app/share/applications/org.virtualbox.VirtualBox-KVM.virtualboxvm.desktop
+      - rm /app/VirtualBox/virtualbox.desktop /app/VirtualBox/virtualboxvm.desktop
