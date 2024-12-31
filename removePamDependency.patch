@@ -1,0 +1,29 @@
+commit 2800295391de42bd3ddb897260c506f8cb46c3ce
+Author: illy <fluoriteByte@proton.me>
+Date:   Tue Dec 31 13:45:40 2024 +0100
+
+    force it to use non pam based code
+
+diff --git a/src/VBox/Runtime/r3/posix/process-creation-posix.cpp b/src/VBox/Runtime/r3/posix/process-creation-posix.cpp
+index 0c520d22..2ff06248 100644
+--- a/src/VBox/Runtime/r3/posix/process-creation-posix.cpp
++++ b/src/VBox/Runtime/r3/posix/process-creation-posix.cpp
+@@ -97,7 +97,8 @@
+ # include <spawn.h>
+ #endif
+ 
+-#if !defined(IPRT_USE_PAM) \
++//don't allow vbox to use pam at all, this doesn't respect "VBOX_WITH_PAM = "
++/*#if !defined(IPRT_USE_PAM) \
+  && !defined(IPRT_WITHOUT_PAM) \
+  && ( defined(RT_OS_DARWIN) || defined(RT_OS_FREEBSD) || defined(RT_OS_LINUX) || defined(RT_OS_NETBSD) || defined(RT_OS_OPENBSD) || defined(RT_OS_SOLARIS) )
+ # define IPRT_USE_PAM
+@@ -108,7 +109,7 @@
+ # include <dlfcn.h>
+ # include <iprt/asm.h>
+ #endif
+-
++*/
+ #ifdef RT_OS_SOLARIS
+ # include <limits.h>
+ # include <sys/ctfs.h>
