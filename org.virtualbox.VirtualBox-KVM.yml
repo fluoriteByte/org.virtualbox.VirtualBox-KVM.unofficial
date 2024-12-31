@@ -2,6 +2,7 @@ app-id: org.virtualbox.VirtualBox-KVM
 runtime: org.kde.Platform
 runtime-version: "6.8"
 sdk: org.kde.Sdk
+command: VirtualBox
 #command: 
 finish-args:
   - --share=ipc
