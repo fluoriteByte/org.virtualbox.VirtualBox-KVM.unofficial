@@ -82,16 +82,16 @@ modules:
         url: https://web.archive.org/web/20241212041009if_/https://download.virtualbox.org/virtualbox/7.1.4/VirtualBox-7.1.4.tar.bz2
         sha256: 872e7a42b41f8558abbf887f1bdc7aac932bb88b2764d07cbce270cab57e3b5e
       - type: patch
-        path: kvm-backend-7.1.4-dev-20241220.patch
+        path: patches/kvm-backend-7.1.4-dev-20241220.patch
         use-git: false
       - type: patch
-        path: fixlibx11thing.patch
+        path: patches/fixlibx11thing.patch
         use-git: false
       - type: patch
-        path: removePamCheck.patch
+        path: patches/removePamCheck.patch
         use-git: false
       - type: patch
-        path: removePamDependency.patch
+        path: patches/removePamDependency.patch
         use-git: false
       - type: file
         path: LocalConfig.kmk
@@ -100,13 +100,13 @@ modules:
     build-commands:
       - rm -rf /app/VirtualBox/{src,sdk,scripts,dtrace,ExtensionPacks}
       - install -D -m0644 /app/VirtualBox/VBox.png /app/share/pixmaps/VBox.png
-      - install -D -m0644 /app/VirtualBox/icons/scalable/virtualbox.svg /app/share/icons/hicolor/scalable/org.virtualbox.VirtualBox_KVM.svg
+      - install -D -m0644 /app/VirtualBox/icons/scalable/virtualbox.svg /app/share/icons/hicolor/scalable/mimetypes/org.virtualbox.VirtualBox_KVM.svg
       - install -D -m0644 org.virtualbox.VirtualBox_KVM.desktop /app/share/applications/org.virtualbox.VirtualBox_KVM.desktop
       - install -D -m0644 org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop /app/share/applications/org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop
 #      - install -D -m0644 /app/VirtualBox/virtualbox.xml /app/share/mime/packages/org.virtualbox.VirtualBox_KVM.xml
       - rm /app/VirtualBox/virtualbox.desktop /app/VirtualBox/virtualboxvm.desktop
     sources:
       - type: file
-        path: org.virtualbox.VirtualBox_KVM.desktop
+        path: files/org.virtualbox.VirtualBox_KVM.desktop
       - type: file
-        path: org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop
+        path: files/org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop
