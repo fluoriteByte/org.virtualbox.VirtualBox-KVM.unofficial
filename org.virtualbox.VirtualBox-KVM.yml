@@ -62,22 +62,15 @@ modules:
         url: https://github.com/acpica/acpica/releases/download/R2024_12_12/acpica-unix-20241212.tar.gz
         sha256: 9dca83cfee390b710485fbdf787048370049c05723b10cc220cfef6e13c31961
 
-  - name: pam
-    buildsystem: meson
-    sources:
-      - type: archive
-        url: https://github.com/linux-pam/linux-pam/releases/download/v1.7.0/Linux-PAM-1.7.0.tar.xz
-        sha256: 57dcd7a6b966ecd5bbd95e1d11173734691e16b68692fa59661cdae9b13b1697
-
   - name: virtualbox
     buildsystem: simple
     build-commands:
 # TODO: Find a less unglier way to do this
-      - PKG_CONFIG_PATH=/app/lib/pkgconfig ./configure --with-gcc='ccache gcc' --with-g++='ccache g++' --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --disable-extpack --with-makeself=/usr/bin/echo
+      - ./configure --with-gcc='ccache gcc' --with-g++='ccache g++' --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --disable-extpack --with-makeself=/usr/bin/echo
       - cat /run/build/virtualbox/configure.log
       - cat env.sh
       - source ./env.sh
-      - PKG_CONFIG_PATH=/app/lib/pkgconfig ./kBuild/bin/linux.amd64/kmk
+      - ./kBuild/bin/linux.amd64/kmk
       - cp -r out/linux.amd64/release/bin/ /app/VirtualBox
       - ln -s /app/VirtualBox/VirtualBox /app/bin/VirtualBox
     sources:
@@ -89,6 +82,9 @@ modules:
         use-git: false
       - type: patch
         path: fixlibx11thing.patch
+        use-git: false
+      - type: patch
+        path: removePamCheck.patch
         use-git: false
       - type: file
         path: LocalConfig.kmk

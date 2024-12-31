@@ -1,0 +1,19 @@
+commit 401ce7b109e2ada98244a433dc3c3a5113901478
+Author: illy <fluoriteByte@proton.me>
+Date:   Tue Dec 31 13:28:12 2024 +0100
+
+    Remove pam check in configure (removes need to build pam)
+
+diff --git a/configure b/configure
+index 65791d55..c445ad29 100755
+--- a/configure
++++ b/configure
+@@ -3023,7 +3023,7 @@ if [ $ONLY_ADDITIONS -eq 0 ]; then
+   [ $WITH_LIBTPMS -eq 1 ] && check_libtpms
+   [ $WITH_LIBLZMA -eq 1 ] && check_liblzma
+   [ "$OS" != "darwin"  ] && check_png
+-  [ $OSE -eq 0 -a "$OS" = "linux" ] && check_pam
++  [ $OSE -eq 0 -a "$OS" = "linux" ] #&& check_pam //don't need that for flatpak
+   if [ $WITH_SDL -eq 1 ]; then
+     check_sdl
+   else
