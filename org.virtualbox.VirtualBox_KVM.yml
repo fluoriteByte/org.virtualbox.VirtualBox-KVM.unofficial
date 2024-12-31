@@ -94,7 +94,7 @@ modules:
         path: patches/removePamDependency.patch
         use-git: false
       - type: file
-        path: LocalConfig.kmk
+        path: files/LocalConfig.kmk
   - name: cleanupstuff
     buildsystem: simple
     build-commands:
