@@ -43,5 +43,5 @@ VBOX_WITH_PAM =
 VBOX_WITH_VRDP = 
 VBOX_WITH_VRDP_AUTHMOD = 
 
-# custom version string
-VBOX_VERSION_STRING='$(VBOX_VERSION_MAJOR).$(VBOX_VERSION_MINOR).$(VBOX_VERSION_BUILD)'_flatpak_unofficial
+# custom vendor string
+VBOX_BUILD_PUBLISHER := _flatpakfB
