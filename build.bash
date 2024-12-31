@@ -1,5 +1,5 @@
 #!/bin/bash
-flatpak run org.flatpak.Builder build org.virtualbox.VirtualBox-KVM.yml \
+flatpak run org.flatpak.Builder build org.virtualbox.VirtualBox_KVM.yml \
 	--force-clean \
 	--ccache \
 	--disable-rofiles-fuse \

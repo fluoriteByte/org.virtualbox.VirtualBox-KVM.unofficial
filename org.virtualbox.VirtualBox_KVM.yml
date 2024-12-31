@@ -1,4 +1,4 @@
-app-id: org.virtualbox.VirtualBox-KVM
+app-id: org.virtualbox.VirtualBox_KVM
 runtime: org.kde.Platform
 runtime-version: "6.8"
 sdk: org.kde.Sdk
@@ -24,10 +24,14 @@ cleanup:
   - /share/man
   - /share/pkgconfig
   - /etc
+  - /app/bin/iasl
+  - /app/bin/libIDL-config-2
+  - /app/bin/vsyasm
+  - /app/bin/yasm
+  - /app/bin/ytasm
 
 
 modules:
-
   - shared-modules/SDL/SDL-1.2.15.json
   - shared-modules/glu/glu-9.json
 
@@ -67,8 +71,7 @@ modules:
     buildsystem: simple
     build-commands:
 # TODO: Find a less unglier way to do this
-      - ./configure --with-gcc='ccache gcc' --with-g++='ccache g++' --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --disable-extpack --with-makeself=/usr/bin/echo
-      - cat /run/build/virtualbox/configure.log
+      - ./configure --with-gcc='cc' --with-g++='c++' --with-kvm --disable-kmods --disable-docs --disable-hardening --disable-java --disable-devmapper --disable-vmmraw --disable-extpack --with-makeself=/usr/bin/echo
       - cat env.sh
       - source ./env.sh
       - ./kBuild/bin/linux.amd64/kmk
@@ -95,7 +98,15 @@ modules:
   - name: cleanupstuff
     buildsystem: simple
     build-commands:
-      - rm -rf /app/VirtualBox/{src,sdk,scripts,dtrace}
-      - install -D -m0644 /app/VirtualBox/virtualbox.desktop /app/share/applications/org.virtualbox.VirtualBox-KVM.virtualbox.desktop
-      - install -D -m0644 /app/VirtualBox/virtualboxvm.desktop /app/share/applications/org.virtualbox.VirtualBox-KVM.virtualboxvm.desktop
+      - rm -rf /app/VirtualBox/{src,sdk,scripts,dtrace,ExtensionPacks}
+      - install -D -m0644 /app/VirtualBox/VBox.png /app/share/pixmaps/VBox.png
+      - install -D -m0644 /app/VirtualBox/icons/scalable/virtualbox.svg /app/share/icons/hicolor/scalable/org.virtualbox.VirtualBox_KVM.virtualbox.svg
+      - install -D -m0644 org.virtualbox.VirtualBox_KVM.virtualbox.desktop /app/share/applications/org.virtualbox.VirtualBox_KVM.virtualbox.desktop
+      - install -D -m0644 org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop /app/share/applications/org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop
+#      - install -D -m0644 /app/VirtualBox/virtualbox.xml /app/share/mime/packages/org.virtualbox.VirtualBox_KVM.xml
       - rm /app/VirtualBox/virtualbox.desktop /app/VirtualBox/virtualboxvm.desktop
+    sources:
+      - type: file
+        path: org.virtualbox.VirtualBox_KVM.virtualbox.desktop
+      - type: file
+        path: org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop
