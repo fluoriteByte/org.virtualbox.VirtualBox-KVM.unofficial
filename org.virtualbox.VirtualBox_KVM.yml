@@ -10,8 +10,7 @@ finish-args:
   - --socket=pulseaudio
   - --share=network
   - --device=all
-  - --filesystem=host
-  - --filesystem=xdg-documents
+  - --filesystem=home
   - --filesystem=~/"VirtualBox VMs"/
 cleanup:
   - /usr
@@ -103,6 +102,7 @@ modules:
       - install -D -m0644 /app/VirtualBox/icons/scalable/virtualbox.svg /app/share/icons/hicolor/scalable/mimetypes/org.virtualbox.VirtualBox_KVM.svg
       - install -D -m0644 org.virtualbox.VirtualBox_KVM.desktop /app/share/applications/org.virtualbox.VirtualBox_KVM.desktop
       - install -D -m0644 org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop /app/share/applications/org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop
+      - install -D -m0644 org.virtualbox.VirtualBox_KVM.metainfo.xml /app/share/metainfo/org.virtualbox.VirtualBox_KVM.metainfo.xml
 #      - install -D -m0644 /app/VirtualBox/virtualbox.xml /app/share/mime/packages/org.virtualbox.VirtualBox_KVM.xml
       - rm /app/VirtualBox/virtualbox.desktop /app/VirtualBox/virtualboxvm.desktop
     sources:
@@ -110,3 +110,5 @@ modules:
         path: files/org.virtualbox.VirtualBox_KVM.desktop
       - type: file
         path: files/org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop
+      - type: file
+        path: files/org.virtualbox.VirtualBox_KVM.metainfo.xml

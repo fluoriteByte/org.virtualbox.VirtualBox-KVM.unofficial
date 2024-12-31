@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>org.virtualbox.VirtualBox_KVM</id>
+    <launchable type="desktop-id">org.virtualbox.VirtualBox_KVM.desktop</launchable>
+    <name>Oracle VirtualBox KVM (unoffical)</name>
+    <metadata_license>CC-BY-SA-3.0</metadata_license>
+    <project_license>GPL-3.0+</project_license>
+    <summary>General use full virtualization software</summary>
+    <description>
+        <p>VirtualBox is a general-purpose full virtualization software for x86_64 hardware (with version 7.1 additionally for macOS/Arm), targeted at laptop, desktop, server and embedded use.</p>
+        <p>Unofficial package by fluoriteByte(github), very cut down, removes support for VRDP, 32-Bit virtualization, and other stuff not needed for the base virtualbox app, make sure to report any packaging related issue/fix to the flatpak repo</p>
+    </description>
+    <developer id="org.virtualbox">
+        <name>Oracle</name>
+        <name>VirtualBox Contributors</name>
+        <name>Cyberus Technology</name>
+    </developer>
+    <content_rating type="oars-1.1" />
+    <releases>
+        <release version="7.1.4" date="2024-12-20"></release>
+    </releases>
+    <url type="homepage">https://www.virtualbox.org/</url>
+    <url type="bugtracker">https://github.com/cyberus-technology/virtualbox-kvm/issues</url>
+    <url type="vcs-browser">https://github.com/cyberus-technology/virtualbox-kvm</url>
+</component>
