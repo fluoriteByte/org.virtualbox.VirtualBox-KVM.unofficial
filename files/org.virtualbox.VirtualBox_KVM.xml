@@ -4,55 +4,55 @@
       <comment>VirtualBox Machine Definition</comment>
       <comment xml:lang="en">VirtualBox Machine Definition</comment>
       <glob pattern="*.vbox"/>
-      <icon name="virtualbox-vbox"/>
+      <icon name="org.virtualbox.VirtualBox_KVM.vbox"/>
    </mime-type>
 
    <mime-type type="application/x-virtualbox-vbox-extpack">
       <comment>VirtualBox Extension Pack</comment>
       <comment xml:lang="en">VirtualBox Extension Pack</comment>
       <glob pattern="*.vbox-extpack"/>
-      <icon name="virtualbox-vbox-extpack"/>
+      <icon name="org.virtualbox.VirtualBox_KVM.vbox-extpack"/>
    </mime-type>
 
    <mime-type type="application/x-virtualbox-ovf">
       <comment>Open Virtualization Format</comment>
       <comment xml:lang="en">Open Virtualization Format</comment>
       <glob pattern="*.ovf"/>
-      <icon name="virtualbox-ovf"/>
+      <icon name="org.virtualbox.VirtualBox_KVM.ovf"/>
    </mime-type>
 
    <mime-type type="application/x-virtualbox-ova">
       <comment>Open Virtualization Format Archive</comment>
       <comment xml:lang="en">Open Virtualization Format Archive</comment>
       <glob pattern="*.ova"/>
-      <icon name="virtualbox-ova"/>
+      <icon name="org.virtualbox.VirtualBox_KVM.ova"/>
    </mime-type>
 
    <mime-type type="application/x-virtualbox-vdi">
       <comment>Virtual Disk Image</comment>
       <comment xml:lang="en">Virtual Disk Image</comment>
       <glob pattern="*.vdi"/>
-      <icon name="virtualbox-vdi"/>
+      <icon name="org.virtualbox.VirtualBox_KVM.vdi"/>
    </mime-type>
 
    <mime-type type="application/x-virtualbox-vmdk">
       <comment>Virtual Machine Disk Format</comment>
       <comment xml:lang="en">Virtual Machine Disk Format</comment>
       <glob pattern="*.vmdk"/>
-      <icon name="virtualbox-vmdk"/>
+      <icon name="org.virtualbox.VirtualBox_KVM.vmdk"/>
    </mime-type>
 
    <mime-type type="application/x-virtualbox-vhd">
       <comment>Virtual Hard Disk</comment>
       <comment xml:lang="en">Virtual Hard Disk</comment>
       <glob pattern="*.vhd"/>
-      <icon name="virtualbox-vhd"/>
+      <icon name="org.virtualbox.VirtualBox_KVM.vhd"/>
    </mime-type>
 
    <mime-type type="application/x-virtualbox-hdd">
       <comment>Virtual Hard Disk</comment>
       <comment xml:lang="en">Virtual Hard Disk</comment>
       <glob pattern="*.hdd"/>
-      <icon name="virtualbox-hdd"/>
+      <icon name="org.virtualbox.VirtualBox_KVM.hdd"/>
    </mime-type>
 </mime-info>

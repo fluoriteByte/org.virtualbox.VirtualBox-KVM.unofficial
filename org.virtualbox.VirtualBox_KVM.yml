@@ -22,12 +22,11 @@ cleanup:
   - /share/gtk-doc
   - /share/man
   - /share/pkgconfig
-  - /etc
-  - /app/bin/iasl
-  - /app/bin/libIDL-config-2
-  - /app/bin/vsyasm
-  - /app/bin/yasm
-  - /app/bin/ytasm
+  - /bin/iasl
+  - /bin/libIDL-config-2
+  - /bin/vsyasm
+  - /bin/yasm
+  - /bin/ytasm
 
 
 modules:
@@ -99,12 +98,24 @@ modules:
     build-commands:
       - rm -rf /app/VirtualBox/{src,sdk,scripts,dtrace,ExtensionPacks}
       - install -D -m0644 /app/VirtualBox/VBox.png /app/share/pixmaps/VBox.png
-      - install -D -m0644 /app/VirtualBox/icons/scalable/virtualbox.svg /app/share/icons/hicolor/scalable/mimetypes/org.virtualbox.VirtualBox_KVM.svg
       - install -D -m0644 org.virtualbox.VirtualBox_KVM.desktop /app/share/applications/org.virtualbox.VirtualBox_KVM.desktop
       - install -D -m0644 org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop /app/share/applications/org.virtualbox.VirtualBox_KVM.virtualboxvm.desktop
       - install -D -m0644 org.virtualbox.VirtualBox_KVM.metainfo.xml /app/share/metainfo/org.virtualbox.VirtualBox_KVM.metainfo.xml
-#      - install -D -m0644 /app/VirtualBox/virtualbox.xml /app/share/mime/packages/org.virtualbox.VirtualBox_KVM.xml
+      - install -D -m0644 /app/VirtualBox/virtualbox.xml /app/share/mime/packages/org.virtualbox.VirtualBox_KVM.xml
       - rm /app/VirtualBox/virtualbox.desktop /app/VirtualBox/virtualboxvm.desktop
+
+      - install -D -m0644 /app/VirtualBox/icons/scalable/virtualbox.svg /app/share/icons/hicolor/scalable/mimetypes/org.virtualbox.VirtualBox_KVM.svg
+      
+      - install -D -m0644 /app/VirtualBox/icons/256x256/virtualbox-vmdk.png /app/share/icons/hicolor/256x256/mimetypes/org.virtualbox.VirtualBox_KVM.vmdk.png
+      - install -D -m0644 /app/VirtualBox/icons/256x256/virtualbox-hdd.png /app/share/icons/hicolor/256x256/mimetypes/org.virtualbox.VirtualBox_KVM.hdd.png
+      - install -D -m0644 /app/VirtualBox/icons/256x256/virtualbox-ova.png /app/share/icons/hicolor/256x256/mimetypes/org.virtualbox.VirtualBox_KVM.ova.png
+      - install -D -m0644 /app/VirtualBox/icons/256x256/virtualbox-ovf.png /app/share/icons/hicolor/256x256/mimetypes/org.virtualbox.VirtualBox_KVM.ovf.png
+      - install -D -m0644 /app/VirtualBox/icons/256x256/virtualbox-vbox.png /app/share/icons/hicolor/256x256/mimetypes/org.virtualbox.VirtualBox_KVM.vbox.png
+      - install -D -m0644 /app/VirtualBox/icons/256x256/virtualbox-vbox-extpack.png /app/share/icons/hicolor/256x256/mimetypes/org.virtualbox.VirtualBox_KVM.vbox_extpack.png
+      - install -D -m0644 /app/VirtualBox/icons/256x256/virtualbox-vdi.png /app/share/icons/hicolor/256x256/mimetypes/org.virtualbox.VirtualBox_KVM.vdi.png
+      - install -D -m0644 /app/VirtualBox/icons/256x256/virtualbox-vhd.png /app/share/icons/hicolor/256x256/mimetypes/org.virtualbox.VirtualBox_KVM.vhd.png
+
+
     sources:
       - type: file
         path: files/org.virtualbox.VirtualBox_KVM.desktop
